@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: $baseFontSize;
+
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100%;
+}
+
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.is-hidden {
+    display: none !important;
+}
+
+.no-scroll {
+    overflow: hidden;
+}

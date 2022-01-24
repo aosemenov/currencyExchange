@@ -1,0 +1,58 @@
+/**
+  * Fonts
+  */
+
+  $baseFontSize: 16px;
+  
+  /**
+    * Colors
+    * Name Generator: http://chir.ag/projects/name-that-color/
+    */
+  
+  /**
+    * Breakpoints
+    */
+  $media-min-desktop-xl: '(min-width: 1440px)';
+  $media-min-desktop-lg: '(min-width: 1280px)';
+  $media-min-desktop: '(min-width: 1024px)';
+  $media-min-tablet: '(min-width: 768px)';
+  $media-max-mobile-xs: '(min-width: 568px)';
+  $media-max-mobile-mini: '(min-width: 490px)';
+
+  /**
+    * Sizes
+    */
+  $window-width-by-design: 1170px;
+  $window-width-by-design-tablet-landscape: 1280px;
+  $window-width-by-design-tablet-portrait: 768px;
+  $window-width-by-design-mobile: 375px;
+  
+  $max-container-width-desktop-xl: 1366px;
+  $max-container-width-desktop-lg: 1170px;
+  $max-container-width-tablet-landscape: 992px;
+  $max-container-width-tablet: 768px;
+  $max-container-width-mobile: 576px;
+  
+  $content-bottom-offset-mobile: 56px;
+  $content-bottom-offset-tablet: 72px;
+  $content-bottom-offset-desktop: 88px;
+  
+  $container-padding-mobile: 16px;
+  $container-padding-tablet: 20px;
+  $container-padding-desktop: 40px;
+  $container-padding-desktop-lg: 80px;
+  
+  $border-radius-default: 5px;
+  
+  $offset-tiny: 10px;
+  $offset-small: 12px;
+  $offset: 16px;
+  $offset-xs: 20px;
+  $offset-m: 24px;
+  $offset-l: 32px;
+  $offset-xl: 40px;
+  $offset-xxl: 56px;
+  
+  /**
+    * Z-index
+    */  
