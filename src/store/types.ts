@@ -43,3 +43,34 @@ export type ICurrensies = {
 }
 
 export type ICurrensiesResponse = ICurrensies
+
+export enum IFormSteps {
+  FIRST = "SUM",
+  SECOND = "BANK",
+  THIRD = "CHECK"
+}
+
+export enum ICurrensiesCode {
+  USD = "USD",
+  RUB = "RUB",
+  EUR = "EUR"
+}
+
+export type ICurrensiesInfo = {
+  currencyfrom: string,
+  currencyto: string,
+  sum: string
+}
+
+export type IBankAccountInfo = {
+  bank: string,
+  bik: string,
+  bankaccount: string,
+}
+
+export interface IData {
+  currensiesInfo?: ICurrensiesInfo,
+  bankAccountInfo?: IBankAccountInfo
+}
+
+export type IFormStepsItem = 'SUM' | 'BANK' | 'CHECK'

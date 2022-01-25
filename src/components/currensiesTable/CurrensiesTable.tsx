@@ -1,5 +1,8 @@
 import { FC, useEffect, useState } from "react";
 
+
+import { fetchExchangeRates } from "../../store/exchangeRates";
+import { fetchCurrensies } from "../../store/currensies";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 import Table from '@mui/material/Table';
@@ -9,32 +12,36 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-import { DashboardWorkBox } from "../dashboardWorkBox";
-
-import { fetchExchangeRates } from "../../store/exchangeRates";
-import { fetchCurrensies } from "../../store/currensies";
 import { Box, SxProps, Theme } from "@mui/material";
 
-import * as globalStyles from "../../const/styles";
-import { palette } from "../../theme/colors";
+import { DashboardBox } from "../dashboardBox";
 
-export const CurrensiesTable: FC = () => {
+import * as globalStyles from "../../const/styles";
+
+type IProps = {
+    currentDate: string
+}
+
+export const CurrensiesTable: FC<IProps> = ({
+    currentDate
+}) => {
     const dispatch = useAppDispatch()
 
     const exchangeRates = useAppSelector(state => state.exchangeRates.payload)
     const statusExchange = useAppSelector(state => state.exchangeRates.isLoading)
     const errorExchange = useAppSelector(state => state.exchangeRates.error)
     const currensies = useAppSelector(state => state.currensies.payload)
-
+    
     const [date, setDate] = useState<string>()
 
     useEffect(() => {
-        if (!currensies && !exchangeRates) {
-            dispatch(fetchExchangeRates())
+        if (!currensies) {
             dispatch(fetchCurrensies())
         }
-    }, [dispatch, currensies, exchangeRates])
+        if (!exchangeRates) {
+            dispatch(fetchExchangeRates(currentDate))
+        }
+    }, [dispatch])
 
     if (exchangeRates && !date) {
         setDate((new Date(exchangeRates.timestamp * 1000)).toDateString())
@@ -102,7 +109,7 @@ export const CurrensiesTable: FC = () => {
     }
 
     return (
-        <DashboardWorkBox
+        <DashboardBox
             isLoading={statusExchange}
             error={errorExchange}
         >
@@ -112,7 +119,7 @@ export const CurrensiesTable: FC = () => {
                     <TableRightSide />
                 </Box>
             </TableContainer>
-        </DashboardWorkBox>
+        </DashboardBox>
     )
 }
 
@@ -128,6 +135,5 @@ const styles = {
     } as SxProps<Theme>,
     table: {
         width: "50%",
-        height: "650px",
     } as SxProps<Theme>,
 }

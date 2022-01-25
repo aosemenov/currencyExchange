@@ -13,15 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
     (request: AxiosRequestConfig): AxiosRequestConfig => {
       console.log('[api request]', request)
       return request;
-    },
-
-    (error: any): IErrorResponse => {
-      console.warn('[api request error]', error)
-      throw {
-        code: IErrorCode.REQUEST,
-        message: error.message,
-      }
-    },
+    }
   )
 
   api.interceptors.response.use(
@@ -35,6 +27,7 @@ if (process.env.NODE_ENV !== 'production') {
             success: false,
             error: {
               code: IErrorCode.RESPONSE,
+              message: response.statusText
             }
           }
         }
@@ -46,15 +39,7 @@ if (process.env.NODE_ENV !== 'production') {
           success: true
         }
       }
-    },
-
-    (error: any): IErrorResponse => {
-      console.warn('[api response error]', error)
-      throw {
-        code: IErrorCode.RESPONSE,
-        message: error.message,
-      }
-    },
+    }
   )
 }
 

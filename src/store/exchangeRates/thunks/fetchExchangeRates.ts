@@ -4,11 +4,11 @@ import { AppThunk } from "../../../app/store";
 
 import { IErrorCode } from "../../types";
 
-export const fetchExchangeRates = (): AppThunk => async (dispatch) => {
+export const fetchExchangeRates = (currentDate: string): AppThunk => async (dispatch) => {
 
     dispatch(actions.fetchStarted())
     try {
-        const response = await getExchangeRates()
+        const response = await getExchangeRates({currentDate})
         if (!response) {
             dispatch(actions.fetchFailed({
                 code: IErrorCode.RESPONSE,

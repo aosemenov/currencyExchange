@@ -1,7 +1,9 @@
+import { FC } from "react";
+
+import { IError } from "../../store/types";
+
 import { CircularProgress, Slide, Typography } from "@mui/material";
 import { Box, SxProps, Theme } from "@mui/system";
-import { FC } from "react";
-import { IError } from "../../store/types";
 
 interface IProps {
     error?: IError
@@ -9,7 +11,7 @@ interface IProps {
     isLock?: boolean
 }
 
-export const DashboardWorkBox: FC<IProps> = ({
+export const DashboardBox: FC<IProps> = ({
     error,
     isLoading,
     isLock,
@@ -27,7 +29,16 @@ export const DashboardWorkBox: FC<IProps> = ({
     }
 
     if (error)
-        console.log("WorkBox Error:", error)
+    return (
+        <Box sx={styles.wrapper}>
+            <Box sx={styles.loadingContainer}>
+                <CircularProgress sx={styles.error} />
+                <Typography variant='h6'>
+                    {`DashboardBox Error: ${error.message}`}
+                </Typography>
+            </Box>
+        </Box>
+    )
 
     if (isLoading && isLock) {
         return (
@@ -60,6 +71,9 @@ export const DashboardWorkBox: FC<IProps> = ({
 const styles = {
     progress: {
         color: "primary.main",
+    } as SxProps<Theme>,
+    error: {
+        color: "error.main",
     } as SxProps<Theme>,
     wrapper: {
         display: "flex",

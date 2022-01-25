@@ -9,6 +9,7 @@ import { CurrensiesPage } from './currensiesPage';
 import { ExchangePage } from './exchangePage';
 import { palette } from '../theme/colors';
 import theme from '../theme';
+import { HomePage } from './homePage';
 
 
 export function Root() {
@@ -19,6 +20,7 @@ export function Root() {
             </Box>
             <Box sx={styles.rootCard__body}>
                 <Routes>
+                    <Route path={paths.root} element={<HomePage />} />
                     <Route path={paths.currensiesPage} element={<CurrensiesPage />} />
                     <Route path={paths.exchangePage} element={<ExchangePage />} />
                 </Routes>
@@ -33,6 +35,7 @@ const styles = {
         flexDirection: "column",
         width: "100%",
         height: "auto",
+        minHeight: "650px",
         padding: "8px",
         borderRadius: "16px",
         backgroundColor: palette.containerBg.light,
@@ -58,6 +61,7 @@ const styles = {
     rootCard__body: {
         display: "flex",
         width: "100%",
+        minHeight: "650px",
         [theme.breakpoints.up('md')]: {
             width: "80%", 
         }
