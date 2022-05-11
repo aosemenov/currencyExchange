@@ -31,7 +31,7 @@ export const CurrensiesTable: FC<IProps> = ({
     const statusExchange = useAppSelector(state => state.exchangeRates.isLoading)
     const errorExchange = useAppSelector(state => state.exchangeRates.error)
     const currensies = useAppSelector(state => state.currensies.payload)
-    
+
     const [date, setDate] = useState<string>()
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export const CurrensiesTable: FC<IProps> = ({
         if (!exchangeRates) {
             dispatch(fetchExchangeRates(currentDate))
         }
-    }, [dispatch])
+    }, [dispatch, currensies, exchangeRates, currentDate])
 
     if (exchangeRates && !date) {
         setDate((new Date(exchangeRates.timestamp * 1000)).toDateString())
@@ -69,6 +69,7 @@ export const CurrensiesTable: FC<IProps> = ({
                                         <TableCell>{code}</TableCell>
                                     </TableRow>
                                 )
+                                return code
                             })
                             }
                         </TableBody>
@@ -98,7 +99,8 @@ export const CurrensiesTable: FC<IProps> = ({
                                         <TableCell>{`${code} / ${exchangeRates.base}`}</TableCell>
                                         <TableCell>{date}</TableCell>
                                     </TableRow>
-                                )
+                                ) 
+                                return code
                             })
                             }
                         </TableBody>

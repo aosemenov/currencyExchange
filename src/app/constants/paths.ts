@@ -1,5 +1,5 @@
 export const paths = {
-    root: '/*',
+    root: '/',
     currensiesPage: '/table',
     exchangePage: '/form'
   }

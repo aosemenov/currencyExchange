@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import { reducer as exchangeRates } from '../store/exchangeRates'
-import {reducer as currensies } from '../store/currensies'
+import { reducer as currensies } from '../store/currensies'
 
 export const store = configureStore({
   reducer: {

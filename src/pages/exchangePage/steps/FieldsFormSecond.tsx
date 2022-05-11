@@ -97,6 +97,7 @@ export const FieldsFormSecond: FC<IProps> = ({
                         variant={'outlined'}
                         autoComplete={'off'}
                         inputProps={{ inputMode: 'numeric' }}
+                        defaultValue={""}
                         {...register("bankAccountInfo.bankaccount", {
                             maxLength: {
                                 value: 20,

@@ -67,6 +67,7 @@ export const FieldsFormFirst: FC<IProps> = ({
                                 sx={{ display: "block" }}
                                 type={"text"}
                                 disabled={disabled}
+                                defaultValue={""}
                                 {...register("currensiesInfo.currencyfrom", {
                                     required: "Заполните обязательное поле"
                                 })}
@@ -94,6 +95,7 @@ export const FieldsFormFirst: FC<IProps> = ({
                                 type={"text"}
                                 placeholder='Выберите валюту из списка'
                                 disabled={disabled}
+                                defaultValue={""}
                                 {...register("currensiesInfo.currencyto", {
                                     required: "Заполните обязательное поле"
                                 })}

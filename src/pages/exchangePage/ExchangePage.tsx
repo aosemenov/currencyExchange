@@ -26,6 +26,14 @@ export const ExchangePage: FC = () => {
     })
     const matches = useMediaQuery('(min-width:568px)')
 
+    const sum = methods.watch('currensiesInfo.sum')
+    const curr_to = methods.watch('currensiesInfo.currencyfrom')
+    const curr_from = methods.watch('currensiesInfo.currencyto')
+
+    const bank = methods.watch('bankAccountInfo.bank')
+    const bik = methods.watch('bankAccountInfo.bik')
+    const bank_account = methods.watch('bankAccountInfo.bankaccount')
+
     const handleNext = useCallback((event: React.FormEvent<HTMLElement>) => {
         event.preventDefault()
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -39,18 +47,18 @@ export const ExchangePage: FC = () => {
     const handleCancel = useCallback((event: React.FormEvent<HTMLElement>) => {
         event.preventDefault()
         history(paths.root)
-    }, [])
+    }, [history])
 
     const handleReset = useCallback(() => {
         methods.reset()
         setActiveStep(0)
-    }, [])
+    }, [methods])
 
     const onSubmit = useCallback((payload: IData) => {
         handleReset()
         setData(payload)
         history(paths.root)
-    }, [])
+    }, [history, handleReset])
 
     useEffect(() => {
         if (data) {
@@ -90,7 +98,7 @@ export const ExchangePage: FC = () => {
 
                     <Box sx={styles.formNavigate}>
                         <Button
-                            color="warning"
+                            variant="outlined"
                             disabled={false}
                             onClick={handleCancel}
                         >
@@ -99,19 +107,35 @@ export const ExchangePage: FC = () => {
                         <Box sx={{ flex: '1 1 auto' }} />
                         <Button
                             color="inherit"
+                            sx={{ mr: '15px' }}
                             disabled={activeStep === 0}
                             onClick={handleBack}
                         >
                             {'Назад'}
                         </Button>
                         {activeStep === steps.length - 1 ? (
-                            <Button type="submit">
+                            <Button variant="contained" type="submit">
                                 {'Отправить'}
                             </Button>
-                        ) : (
-                            <Button type="button" onClick={handleNext}>
+                        ) : (activeStep === steps.length - 3 ? (
+                            <Button
+                                variant="contained"
+                                disabled={sum && curr_to && curr_from ? false : true}
+                                type="button"
+                                onClick={handleNext}
+                            >
                                 {'Далее'}
                             </Button>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                disabled={bank && bik && bank_account ? false : true}
+                                type="button"
+                                onClick={handleNext}
+                            >
+                                {'Далее'}
+                            </Button>
+                        )
                         )}
                     </Box>
                 </Box>
